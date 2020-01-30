@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+	
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+  <meta charset="UTF-8">
+  <title>图片热点问题</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+ <style>
+    .img{position:relative;border:solid 1px #000;display:inline-block;margin:100px 100px}
+    .img .marker{position:absolute;width:20px;height:20px;background:#f00;}
+</style>
+
+</head>
+<body>
+ 
+  <p>点击第1个刘亦菲</p> 
+<div class="img" id="dv">
+    <img  id="LiuYiFeiImg" src="http://n.sinaimg.cn/fashion/transform/302/w472h630/20190506/ad3a-hwfpcxp2797029.jpg"></div>
+    
+    <p>在第2个小刘亦菲上做点标记</p> 
+<div class="img" id="dv2">
+    <img  id="SmallLiuYiFeiImg" src="http://n.sinaimg.cn/fashion/transform/302/w472h630/20190506/ad3a-hwfpcxp2797029.jpg" width="300px" height="400px"></div>
+</body>
+</html>
+
+ <script type="text/javascript">
+ 	var ProportionHeightInImg; //鼠标所选位置相对于所选图片高度的比例
+ 	var ProportionWidthInImg;//鼠标所选位置相对于所选图片宽度的比例
+    function createMarker(x, y,divName) {
+        var div = document.createElement('div');
+        div.className = 'marker'; div.style.left = x + 'px'; div.style.top = y + 'px';
+        document.getElementById(divName).appendChild(div)
+    }
+    
+    
+    
+    document.getElementById('dv').onclick = function (e) {
+        e = e || window.event;
+        var x = e.offsetX || e.layerX, y = e.offsetY || e.layerY;
+        createMarker(x, y,'dv');
+        
+        //获取图片的高度和宽度
+       var myImg = document.querySelector("#LiuYiFeiImg");
+            var currWidth = myImg.clientWidth;
+            var currHeight = myImg.clientHeight;
+            alert("图片高度："+currHeight);
+            alert("图片宽度："+currWidth);
+          ProportionWidthInImg=x/currWidth;
+          ProportionHeightInImg=y/currHeight;
+           alert("图片比例高度："+ProportionHeightInImg);
+          alert("图片比例宽度："+ProportionWidthInImg);
+          MarkSmallImg();
+          
+    }
+ 
+function MarkSmallImg()
+{
+	var myImg = document.querySelector("#SmallLiuYiFeiImg");
+            var currWidth = myImg.clientWidth;
+            var currHeight = myImg.clientHeight;
+            alert("图片高度："+currHeight);
+            alert("图片宽度："+currWidth);
+            
+            //给第二个刘亦菲加标记点
+            var x=currWidth*ProportionWidthInImg;
+            var y=currHeight*ProportionHeightInImg;
+             createMarker(x, y,'dv2');
+        
+}
+
+
+ 
+
+  </script>
+</html>
