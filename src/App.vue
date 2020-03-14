@@ -6,7 +6,8 @@
       <router-link to="/function">function</router-link> |
       <router-link to="/video">videoPlayer</router-link> | 
       <router-link to="/point">point</router-link> | 
-      <router-link to="/tableSelect">tableDemo</router-link>
+      <router-link to="/tableSelect">tableDemo</router-link> | 
+      <router-link to="/tableVhtml">tableVhtml</router-link>
     </div>
     <router-view />
   </div>

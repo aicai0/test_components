@@ -8,47 +8,37 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: () => import(/* webpackChunkName: "about" */ "./views/Home.vue")
+      component: () => import( "./views/Home.vue")
     },
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
+      component: () => import( "./views/About.vue")
     },
     {
       path: "/function",
       name: "function",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/function.vue")
+      component: () => import( "./views/function.vue")
     },
     {
       path: "/video",
       name: "video",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/videoHtml.vue")
+      component: () => import( "./views/videoHtml.vue")
     },
     {
       path: "/point",
       name: "point",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/point.vue")
+      component: () => import( "./views/point.vue")
     },
     {
       path: "/tableSelect",
       name: "tableSelect",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/tableDemo.vue")
+      component: () => import("./views/tableDemo.vue")
+    },
+    {
+      path: "/tableVhtml",
+      name: "tableVhtml",
+      component: () => import("./views/tableVhtml.vue")
     },
   ]
 });
