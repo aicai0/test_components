@@ -238,7 +238,7 @@ export default {
                 //     ++j;
                 //     this.map.removeOverlay(marker);
                 // }
-                // else this.map.removeOverlay(marker);
+                else this.map.removeOverlay(marker);
             }
         }
     },
