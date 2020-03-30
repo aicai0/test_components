@@ -5,7 +5,7 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production' ? '/video' : '/',
     configureWebpack: {
         externals: {
-            // "BMap": "BMap",
+            // "BaiduMap": "BMap",
         }
     },
     outputDir: 'dist',

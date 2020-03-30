@@ -40,5 +40,10 @@ export default new Router({
       name: "tableVhtml",
       component: () => import("./views/tableVhtml.vue")
     },
+    {
+      path: "/mapPoint",
+      name: "mapPoint",
+      component: () => import("./views/mapPoint.vue")
+    },
   ]
 });
