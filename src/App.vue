@@ -36,6 +36,9 @@ export default {
 }
 #nav {
   padding: 30px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 #nav a {
   font-weight: bold;
