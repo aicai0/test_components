@@ -51,7 +51,7 @@ export default {
         })
     },
     destroyed(){
-        console.log('销毁-----------------')
+        // console.log('销毁-----------------')
         this.disposeVideo();
     },
     methods: {

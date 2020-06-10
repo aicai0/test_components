@@ -45,5 +45,10 @@ export default new Router({
       name: "mapPoint",
       component: () => import("./views/mapPoint.vue")
     },
+    {
+      path: "/othello",
+      name: "othello",
+      component: () => import("./views/othello.vue")
+    },
   ]
 });

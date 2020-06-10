@@ -1,14 +1,28 @@
 <template>
     <div class="table-demo">
         <editTabe :tableData="tableData"></editTabe>
+        <BusinessManagement></BusinessManagement>
+        <template v-for="(yearData,index) in yearDataList" >
+            <TableYearHeader :year-data="yearData"
+            :year-data-list="yearDataList"
+            :key="index"
+            :index="index"
+            :is-lock="true"
+            @removeLine="removeLine"
+            @selectTime="selectTime"
+            @addYear="addYear"></TableYearHeader>
+        </template>
+        
     </div>
 </template>
 <script>
+import BusinessManagement from './business-management/index.vue'
+import TableYearHeader from './business-management/financial-calculation/components/component/tableYearHeader/index.vue'
 import editTabe from './editTable.vue'
 export default {
     name:'tableDemo',
     components:{
-        editTabe,
+        editTabe,BusinessManagement,TableYearHeader
     },
     data(){
         return {
@@ -30,11 +44,34 @@ export default {
                     {user:'登录用户2',pwd:'登录密码2',degree:'本科',select_degree:'1',info:'其他信息2',isSet:false,role:'经理',select_role:'2'},
                 ],
                 addShow:true,
-            }
+            },
+            yearData:{year:2019,month:12},
+            yearDataList: [],
         }
     },
     methods:{
-
+        selectTime(a){
+            console.log(a)
+        },
+        removeLine(aa){
+            console.log(aa)
+        },
+        addYear(year, index){
+            this.startData = {
+        year: year,
+        month: 0,
+        isFullYear: true
+      }
+      const singleYearTemplate = this.createYearTemplate()
+      this.yearDataList = this.yearDataList.filter(item => item.show).map(item=>{
+        return { ...item, id: item.id*2 }
+      })
+      this.yearDataList.splice(index, 0, singleYearTemplate)
+        },
+        // 生成日期一列对象
+    createYearTemplate() {
+      return Object.assign({}, this.singleYearTemplate, this.startData, { id: this.id++ })
+    },
     }
 }
 </script>

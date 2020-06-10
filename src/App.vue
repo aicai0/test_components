@@ -8,7 +8,8 @@
       <router-link to="/point">point</router-link> | 
       <router-link to="/tableSelect">tableDemo</router-link> | 
       <router-link to="/tableVhtml">tableVhtml</router-link> | 
-      <router-link to="/mapPoint">mapPoint</router-link>
+      <router-link to="/mapPoint">mapPoint</router-link> | 
+      <router-link to="/othello">othello</router-link>
     </div>
     <router-view />
   </div>
