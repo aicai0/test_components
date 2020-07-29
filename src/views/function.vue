@@ -61,10 +61,20 @@ export default {
                 value:'id',
                 label:'name',
                 children:'children',
-            }
+            },
+            basearr0:[],
+            basearr1:[{id:1,name:'1'},{id:2,name:'2'},{id:3,name:'3'}],
+            otherArr1:[{id:1,name:'休1'}]
         }
     },
-
+    created(){
+        this.basearr1 = this.contactArr(this.basearr1, this.otherArr1, "id", false, {age:1})
+        console.log(this.basearr1)
+        this.basearr0 = this.contactArr(this.basearr0, this.otherArr1, "id", false, {age:1})
+        console.log(this.basearr0)
+        this.basearr1 = this.contactArr(this.basearr1, this.otherArr1, "id", true, {age:1})
+        console.log(this.basearr1)
+    },
     methods:{
         change(){
             this.options = this.buildTree(this.list,this.defaultTreeProps);
@@ -107,6 +117,23 @@ export default {
             } else {
                 return root.children;
             }
+        },
+        contactArr(baseArr, otherArr, property, deleteFlag=true, parentCodeData){
+            // debugger
+            otherArr.forEach(otherEle=>{
+                otherEle.parentCodeData = parentCodeData
+                let index = baseArr.findIndex(baseEle=>{
+                    return baseEle[property] == otherEle[property]
+                })
+                if(index == -1 && !deleteFlag){
+                    baseArr.push(otherEle)
+                }else if(!deleteFlag){
+                    baseArr.splice(index, 1, otherEle)
+                }else {
+                    baseArr.splice(index, 1)
+                }
+            })
+            return baseArr
         }
     }
 }

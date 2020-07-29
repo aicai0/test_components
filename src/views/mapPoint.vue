@@ -20,6 +20,7 @@
 </template>
 <script>
 import '../assets/js/mapJs/MarkerClusterer_min.js'
+import '../assets/js/mapJs/TrafficControl_min.js'
 import '../assets/js/mapJs/TextIconOverlay.js'
 import '../assets/js/mapJs/BMapLib_GeoUtils.js'
 import img from "../assets/imgs/marker.png";
@@ -28,7 +29,7 @@ export default {
     props:{
         controlShow:{     // 是否显示缩放控件
             type:Boolean,
-            default:false,
+            default:true,
         },
         point:{           // 中心点
             type:Object,
@@ -80,6 +81,14 @@ export default {
                 vue.map.addControl(new BMap.NavigationControl());    //添加缩放控件
             }
 
+            let ctrl = new BMapLib.TrafficControl({
+		            showPanel: false //是否显示路况提示面板
+            });     
+            vue.map.addControl(ctrl);  
+            // ctrl.showTraffic(); 
+
+            // let traffic = new BMap.TrafficLayer();
+            // vue.map.addTileLayer(traffic); 
             vue.map.enableScrollWheelZoom(true);                 //滚轮控制缩放
             vue.map.enableDoubleClickZoom(false);                //双击缩放控制
             //自定义点标注样式 Icon()中有3个参数：String类型的图片地址url；Size类型的图片大小；和可选参数IconOptions
@@ -246,6 +255,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../assets/js/mapJs/TrafficControl_min.css';
 .map-point{
     .button{
         text-align: left;

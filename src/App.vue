@@ -9,7 +9,8 @@
       <router-link to="/tableSelect">tableDemo</router-link> | 
       <router-link to="/tableVhtml">tableVhtml</router-link> | 
       <router-link to="/mapPoint">mapPoint</router-link> | 
-      <router-link to="/othello">othello</router-link>
+      <router-link to="/othello">othello</router-link> | 
+      <router-link to="/canvas">canvas</router-link>
     </div>
     <router-view />
   </div>

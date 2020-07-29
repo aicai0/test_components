@@ -50,5 +50,10 @@ export default new Router({
       name: "othello",
       component: () => import("./views/othello.vue")
     },
+    {
+      path: "/canvasDemo",
+      name: "canvasDemo",
+      component: () => import("./views/canvas.vue")
+    },
   ]
 });
