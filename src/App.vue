@@ -10,7 +10,8 @@
       <router-link to="/tableVhtml">tableVhtml</router-link> | 
       <router-link to="/mapPoint">mapPoint</router-link> | 
       <router-link to="/othello">othello</router-link> | 
-      <router-link to="/canvas">canvas</router-link>
+      <router-link to="/canvas">canvas</router-link> | 
+      <router-link to="/windowSpeech">windowSpeech</router-link> | 
     </div>
     <router-view />
   </div>

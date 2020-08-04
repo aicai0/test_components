@@ -1,23 +1,9 @@
 <template>
     <div class="table-demo">
         <editTabe :tableData="tableData"></editTabe>
-        <BusinessManagement></BusinessManagement>
-        <template v-for="(yearData,index) in yearDataList" >
-            <TableYearHeader :year-data="yearData"
-            :year-data-list="yearDataList"
-            :key="index"
-            :index="index"
-            :is-lock="true"
-            @removeLine="removeLine"
-            @selectTime="selectTime"
-            @addYear="addYear"></TableYearHeader>
-        </template>
-        
     </div>
 </template>
 <script>
-import BusinessManagement from './business-management/index.vue'
-import TableYearHeader from './business-management/financial-calculation/components/component/tableYearHeader/index.vue'
 import editTabe from './editTable.vue'
 export default {
     name:'tableDemo',

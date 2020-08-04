@@ -55,5 +55,10 @@ export default new Router({
       name: "canvasDemo",
       component: () => import("./views/canvas.vue")
     },
+    {
+      path: "/windowSpeech",
+      name: "windowSpeech",
+      component: () => import("./views/windowSpeech.vue")
+    },
   ]
 });
