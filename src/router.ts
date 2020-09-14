@@ -36,19 +36,9 @@ export default new Router({
       component: () => import("./views/tableDemo.vue")
     },
     {
-      path: "/tableVhtml",
-      name: "tableVhtml",
-      component: () => import("./views/tableVhtml.vue")
-    },
-    {
       path: "/mapPoint",
       name: "mapPoint",
       component: () => import("./views/mapPoint.vue")
-    },
-    {
-      path: "/othello",
-      name: "othello",
-      component: () => import("./views/othello.vue")
     },
     {
       path: "/canvasDemo",
@@ -59,6 +49,11 @@ export default new Router({
       path: "/windowSpeech",
       name: "windowSpeech",
       component: () => import("./views/windowSpeech.vue")
+    },
+    {
+      path: "/countdown",
+      name: "countdown",
+      component: () => import("./views/countdown.vue")
     },
   ]
 });

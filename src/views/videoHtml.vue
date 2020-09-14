@@ -34,7 +34,6 @@ export default {
     },
     mounted(){
        this.timer = setInterval(()=>{
-           console.log(1111)
        },1000)
     },
     destroyed(){

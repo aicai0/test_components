@@ -65,12 +65,14 @@ export default {
             this.flvPlayer.play();
         },
         flvDestroy(){
-            this.flvPlayer.pause();
-            this.flvPlayer.unload();
-            this.flvPlayer.detachMediaElement();
-            this.flvPlayer.destroy();
-            this.flvPlayer = null;
-            this.playerElement = null;
+            if(this.flvPlayer){
+                this.flvPlayer.pause();
+                this.flvPlayer.unload();
+                this.flvPlayer.detachMediaElement();
+                this.flvPlayer.destroy();
+                this.flvPlayer = null;
+                this.playerElement = null;
+            }   
         }
     },
     watch:{

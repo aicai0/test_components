@@ -1,36 +1,52 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/function">function</router-link> |
-      <router-link to="/video">videoPlayer</router-link> | 
-      <router-link to="/point">point</router-link> | 
-      <router-link to="/tableSelect">tableDemo</router-link> | 
-      <router-link to="/tableVhtml">tableVhtml</router-link> | 
-      <router-link to="/mapPoint">mapPoint</router-link> | 
-      <router-link to="/othello">othello</router-link> | 
-      <router-link to="/canvas">canvas</router-link> | 
-      <router-link to="/windowSpeech">windowSpeech</router-link> | 
+    <div class="nav-handler" @mouseover="navShow=true"></div>
+    <div id="nav" :class="navShow?'nav-show':''" @mouseleave="navShow=false">
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+        <el-menu-item :index="router.id" v-for="(router,index) in topNav" :key="index" @click="go_router(router)">{{router.name}}</el-menu-item>
+      </el-menu>
     </div>
-    <router-view />
+    <div class="main">
+      <router-view />
+    </div>
   </div>
 </template>
 <script>
+import {topNav} from "./views/topMenu.js"
 export default {
   name:'App',
   data(){
-    return{}
+    return{
+      topNav:[],
+      activeIndex:"0",
+      navShow: false,
+    }
   },
   created(){
-    // window.onbeforeunload = function () {
-    //     return "Do you really want to close?";
-    // };
+     this.topNav = topNav
+  },
+  methods:{
+    go_router(router){
+      this.$router.push({path: router.path})
+    }
   }
 }
 </script>
-<style>
+<style lang="less">
+html{
+    width: 100%;
+    height: 100%;
+    body{
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+}
 #app {
+  width: 100%;
+  height: 100%;
+  position: relative;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,17 +54,44 @@ export default {
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  position: fixed;
+  top: -60px;
+  left: 0;
+  height: 60px;
+  padding: 0 30px;
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   justify-content: center;
+  background: #fff;
+  transition: 1s;
 }
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.nav-handler{
+  position: fixed;
+  top: 0px;
+  left: 0;
+  height: 10px;
+  padding: 0 30px;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  background: transparent;
+  // background: #ccc;
+  cursor: pointer;
+}
+#nav.nav-show{
+  top: 0;
+  transition: 1s;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.main{
+  width: 100%;
+  padding:10px 60px;
+  padding-top: 80px;
+  box-sizing: border-box;
 }
 </style>
