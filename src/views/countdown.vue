@@ -45,7 +45,17 @@ export default {
     mounted(){
         this.canvasInit(digitData);
     },
+    computed: {
+        todoList(){
+            return JSON.parse(sessionStorage.getItem('todoList')) || []
+        }
+    },
     methods:{
+        dataInit(){
+            if(this.todoList.length){
+                
+            }
+        },
         canvasInit(){ 
             this.canvasClock = this.$refs.canvasClock;
             this.canvasClock.width = this.canvasWidth;
@@ -320,6 +330,7 @@ export default {
 .canvas-count{
     width: 100%;
     height: 100%;
+    background: #000;
     .top-handler{
         position: fixed;
         top: 60px;
@@ -352,7 +363,6 @@ export default {
         width: 100%;
         height: calc(100% - 60px);
         .myCanvas{
-            border: 1px solid #ccc;
             margin: 0 auto;
         }
     }

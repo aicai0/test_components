@@ -6,6 +6,9 @@
     <canvas class="myCanvas"  ref="canvasChart2">
         您的浏览器不支持 HTML5 canvas 标签。
     </canvas>
+    <canvas class="myCanvas"  ref="canvasPic">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
     <canvas class="myCanvas"  ref="canvasBall">
         您的浏览器不支持 HTML5 canvas 标签。
     </canvas>
@@ -18,6 +21,7 @@
 </div>
 </template>
 <script>
+import logo  from "../assets/logo.png"
 export default {
     name:'canvasDemo',
     data(){
@@ -85,17 +89,16 @@ export default {
             pieData:[
                 {value: 100,name: '幽州'},
                 {value: 100,name: '荆州'},
-                {value: 100, name: '荆州'},
+                {value: 100, name: '凉州'},
                 {value: 100, name: '兖州'},
                 {value: 100, name: '益州'},
-                // {value: 100, name: '西凉'}
             ],
             pieConfig:{
                 center: ["50%", "50%"],
                 radius: "60%",
                 color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
                 font:{
-                    space:10,
+                    space:20,
                 }
             }
         }
@@ -142,6 +145,21 @@ export default {
             this.canvasChart2Ctx = this.canvasChart2.getContext("2d");
             this.drawChartPie();
 
+            this.canvasPic = this.$refs.canvasPic;
+            this.canvasPic.width = 1200;
+            this.canvasPic.height = 400;
+            this.canvasPicCtx = this.canvasPic.getContext("2d");
+            this.drawChartPic();
+
+        },
+        // 绘制图片
+        drawChartPic(){
+            let img = new Image();
+            img.src = logo;
+            img.onload = ()=>{
+                this.canvasPicCtx.drawImage(img, 50, 50);
+            }
+            
         },
         // 绘制折线图
         drawChartLine(){
@@ -284,14 +302,21 @@ export default {
            
             for(let i = 0; i < this.pieData.length; i++){
             // this.pieData.forEach((data,i)=>{
+                
                 let data = this.pieData[i]
                 // if(i>0) return
                 // 绘制扇形区域
-                console.log(startAngle)
                 this.canvasChart2Ctx.beginPath();  
                 this.canvasChart2Ctx.lineWidth = 0;             
                 this.canvasChart2Ctx.moveTo(centerX,centerY) 
-                this.canvasChart2Ctx.arc(centerX, centerY, radius, startAngle * 2 * Math.PI , (data.value / total * 2 * Math.PI) )
+                /*弧度计算
+                  180度 对应弧度PI
+                  30度  对应的弧度  30 / x = 180 / PI =》 x=30*Math.PI / 180
+                  每个扇形对应的度数为 (data.value/total*360) * Math.PI / 180
+                */
+                //  结束角度
+                let endAngle = startAngle + data.value/total*360
+                this.canvasChart2Ctx.arc(centerX, centerY, radius, startAngle * Math.PI / 180 , endAngle * Math.PI / 180 )
                 
                 this.canvasChart2Ctx.strokeStyle = this.pieConfig.color[i];
                 this.canvasChart2Ctx.stroke();
@@ -300,17 +325,24 @@ export default {
                 this.canvasChart2Ctx.fill()
                 console.log(data)
                 // // 绘制文字标示
-                // let fontX = centerX + Math.sin(startAngle + (data.value / total * 2 * Math.PI) / 2) * (radius + this.pieConfig.font.space)
-                // let fontY = centerX + Math.cos(startAngle + (data.value / total * 2 * Math.PI) / 2) * (radius + this.pieConfig.font.space)
-                // this.canvasChart2Ctx.fillStyle = this.pieConfig.color[i]; //设置填充颜色为紫色
-                // this.canvasChart2Ctx.font = '10px "微软雅黑"'; //设置字体
-                // this.canvasChart2Ctx.textBaseline = 'center'; //设置字体底线对齐绘制基线
-                // this.canvasChart2Ctx.textAlign = 'left'; //设置字体对齐的方式
-                // this.canvasChart2Ctx.fillText(data.name, fontX, fontY); //填充文字
+                let textAngle= startAngle + data.value/total*360 / 2
+                let fontY = centerY + Math.sin( textAngle * Math.PI / 180 ) * (radius + this.pieConfig.font.space)
+                let fontX = centerX + Math.cos( textAngle * Math.PI / 180 ) * (radius + this.pieConfig.font.space)
+                console.log(centerX,fontX,centerX,fontY,radius)
+                this.canvasChart2Ctx.fillStyle = this.pieConfig.color[i]; //设置填充颜色为紫色
+                this.canvasChart2Ctx.font = '10px "微软雅黑"'; //设置字体
+                this.canvasChart2Ctx.textBaseline = 'center'; //设置字体底线对齐绘制基线
+                if(textAngle > 90 && textAngle < 270){
+                    this.canvasChart2Ctx.textAlign = 'end'; //设置字体对齐的方式
+                }else{
+                    this.canvasChart2Ctx.textAlign = 'left'; //设置字体对齐的方式
+                }
+                // 
+                this.canvasChart2Ctx.fillText(data.name, fontX, fontY); //填充文字
 
-                startAngle += (data.value / total ) 
+                startAngle += data.value/total*360 
             }
-            console.log(startAngle,'last')
+            
         },
         
         // 运动的小球 --------------------

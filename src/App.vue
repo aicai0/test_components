@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="routerExtraClass">
     <div class="nav-handler" @mouseover="navShow=true"></div>
     <div id="nav" :class="navShow?'nav-show':''" @mouseleave="navShow=false">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
@@ -20,14 +20,27 @@ export default {
       topNav:[],
       activeIndex:"0",
       navShow: false,
+      routerToClassName: {
+        '/countdown': 'count-bac',
+      },
+      routerExtraClass:""
     }
   },
   created(){
-     this.topNav = topNav
+     this.topNav = topNav;
+     this.classInit();
   },
   methods:{
     go_router(router){
       this.$router.push({path: router.path})
+    },
+    classInit(){
+      this.routerExtraClass = this.routerToClassName[this.$route.path];
+    }
+  },
+  watch:{
+    "$route"(){
+      this.classInit();
     }
   }
 }
@@ -93,5 +106,8 @@ html{
   padding:10px 60px;
   padding-top: 80px;
   box-sizing: border-box;
+}
+.count-bac{
+  background: #000;
 }
 </style>
