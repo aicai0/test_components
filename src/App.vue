@@ -78,6 +78,7 @@ html{
   justify-content: center;
   background: #fff;
   transition: 1s;
+  overflow: hidden;
 }
 .nav-handler{
   position: fixed;
@@ -92,6 +93,7 @@ html{
   background: transparent;
   // background: #ccc;
   cursor: pointer;
+  overflow: hidden;
 }
 #nav.nav-show{
   top: 0;
@@ -103,6 +105,7 @@ html{
 }
 .main{
   width: 100%;
+  height: 100%;
   padding:10px 60px;
   padding-top: 80px;
   box-sizing: border-box;

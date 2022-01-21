@@ -55,5 +55,20 @@ export default new Router({
       name: "countdown",
       component: () => import("./views/countdown.vue")
     },
+    {
+      path: "/gaodeMap",
+      name: "gaodeMap",
+      component: () => import("./views/gaodeMap.vue")
+    },
+    {
+      path: "/trtcH5",
+      name: "inquery",
+      component: () => import("./views/trtcH5/inquery.vue")
+    },
+    {
+      path: "/timIndex",
+      name: "timIndex",
+      component: () => import("./views/tim/timIndex.vue")
+    },
   ]
 });

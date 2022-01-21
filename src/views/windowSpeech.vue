@@ -36,9 +36,20 @@ export default {
             playFlag: true,
         }   
     },
+    created(){
+         // var msg = new SpeechSynthesisUtterance("测试");
+        //msg.rate = 4 播放语速
+        //msg.pitch = 10 音调高低
+        //msg.text = "播放文本"
+        //msg.volume = 0.5 播放音量
+        // window.speechSynthesis.speak(msg);
+        // window.speechSynthesis.pause(); // 暂停
+        // window.speechSynthesis.resume(); // 继续
+        // window.speechSynthesis.cancel(); // 取消
+    },
     mounted(){
         this.windowMsg = new window.SpeechSynthesisUtterance()
-        this.windowSpeech = window.speechSynthesis
+        this.windowSpeech = window.speechSynthesis   
     },
     methods:{
         onePause(data){

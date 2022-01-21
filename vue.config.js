@@ -23,9 +23,7 @@ module.exports = {
         https: false, // https:{type:Boolean}
         open: false, //配置自动启动浏览器
         proxy: {
-            
             '/v1': {
-               
                 target: 'http://changyou.speeed.cn:8003/',
                 // ws:'8095',
                 changeOrigin: true,// 是否跨域

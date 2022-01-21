@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>柱图</h1>
+    <div @click="go">跳转</div>
     <div class="echarts" ref="myChart">
 
     </div>
@@ -47,6 +48,9 @@ export default {
     this.drawLine();
   },
   methods: {
+    go(){
+      window.location.href = "http://192.168.11.43:8083/index#/login?l=wangkai&p=HiFApC5R/CK/cWYbNQIRcQ==&s=fireUnit&to=fireUnitFirefighter&bac=fireUnit&from=otherLogin"
+    },
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
       // 全局引入时初始化

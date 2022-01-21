@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
+    "allowJs": true, 
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "noImplicitAny": false,
@@ -28,6 +29,7 @@
     ]
   },
   "include": [
+    "src/**/*.js",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

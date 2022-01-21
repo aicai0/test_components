@@ -49,4 +49,19 @@ export const topNav = [
         name:"countdown",
         path:"/countdown",
     },
+    {
+        id:"11",
+        name:"gaodeMap",
+        path:"/gaodeMap",
+    },
+    {
+        id:"112",
+        name:"trtcH5",
+        path:"/trtcH5",
+    },
+    {
+        id:"113",
+        name:"timIndex",
+        path:"/timIndex",
+    },
 ]
